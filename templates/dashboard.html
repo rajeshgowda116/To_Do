@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Welcome, {{ current_user.username }}</h2>
+
+<form method="POST" action="{{ url_for('add') }}">
+
+
+    <input type="text" name="task" placeholder="Add new task" required>
+    <button type="submit">Add</button>
+</form>
+
+<ul class="todo-list">
+    {% for task in tasks %}
+        <li>
+            {{ task.task }}
+            <a href="{{ url_for('delete', id=task.id) }}" class="delete-btn">X</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
